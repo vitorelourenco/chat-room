@@ -3,6 +3,58 @@ body{
   background-color: #f3f3f3;
 }
 
+.login-screen{
+  position: fixed;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.credentials{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.credentials input{
+  width: 260px;
+  height: 54px;
+  border-radius: 4px;
+  border: 1px solid #d7d7d7;
+  margin-bottom: 15px;
+}
+
+.credentials input::placeholder{
+  color: #aeaeae;
+  opacity: 1;
+  text-align: center;
+}
+
+.credentials button{
+  border-radius: 9px;
+  background-color: #e7e7e7;
+  border: 1px solid #e7e7e7;
+  width: 109px;
+  height: 45px;
+  color: #696969;
+}
+
+.credentials img{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -186px);
+}
+
 .chat-header,
 .chat-footer{
   width: 100%;
@@ -13,6 +65,7 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 99;
 }
 
 .chat-header [name="people"],
