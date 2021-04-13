@@ -13,7 +13,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 500;
 }
 
 .credentials{
@@ -55,6 +55,32 @@ body{
   transform: translate(-50%, -186px);
 }
 
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+}
+
+.room{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 260px;
+  z-index: 300;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+
+.room-hidden{
+  transform: translateX(100%);
+}
+
+
 .chat-header,
 .chat-footer{
   width: 100%;
@@ -65,7 +91,7 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 99;
+  z-index: 100;
 }
 
 .chat-header [name="people"],
@@ -122,4 +148,8 @@ body{
 
 .chat-footer input:focus-visible{
   outline:1px solid rgba(0, 0, 0, 0.1);
+}
+
+.d-none{
+  display: none;
 }
