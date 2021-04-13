@@ -12,8 +12,8 @@
 </head>
 <body>
   <section class="room room-hidden">
-    <header>Escolha um contato para enviar mensagem:</header>
     <div class="active-users">
+      <header>Escolha um contato para enviar mensagem:</header>
       <div class="all">
         <ion-icon name="people"></ion-icon>
         <span class="username">Todos</span>
@@ -31,12 +31,18 @@
       </div>
     </div>
     <div class="privacy">
-      <div>
-        <span>Publico</span>
+      <header>Escolha uma visibilidade:</header>
+      <div class="privacy-option">
+        <ion-icon name="lock-open"></ion-icon>
+        <span class="privacy-value">Publico</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
       </div>
-      <div>
-        <span>Privado</span>
+      <div class="privacy-option selected">
+        <ion-icon name="lock-closed"></ion-icon>
+        <span class="privacy-value">Reservadamente</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
       </div>
+
     </div>
   </section>
 
@@ -64,10 +70,6 @@
     </div>
     <ion-icon name="paper-plane-outline"></ion-icon>
   </footer>
-  <!-- <ion-icon name="lock-open"></ion-icon>
-  <ion-icon name="lock-closed"></ion-icon>
-  
- -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="scrips/main.js"></script>
 </body>

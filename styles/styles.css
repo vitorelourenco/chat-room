@@ -3,6 +3,11 @@ body{
   background-color: #f3f3f3;
 }
 
+ion-icon{
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
 .login-screen{
   position: fixed;
   top:0;
@@ -76,11 +81,13 @@ body{
   transition: transform 0.3s ease;
   font-size: 16px;
   line-height: 18.75px;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
-/* .room-hidden{
+.room-hidden{
   transform: translateX(100%);
-} */
+}
 
 .room header{
   display: flex;
@@ -88,18 +95,17 @@ body{
   align-items: center;
   font-weight: bold;
   text-align: center;
-  height: 84px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.active-users{
-  margin-left: 18px;
-  margin-right: 18px;
+.active-users header{
+  height: 84px;
 }
 
 .user,
-.all {
+.all,
+.privacy-option {
   display: flex;
   align-items: center;
   height: 28px;
@@ -108,18 +114,14 @@ body{
   margin-bottom: 8px;
 }
 
-.user{
+.user,
+.privacy-option{
   margin-left: 1.5px;
 }
 
-.all [name="person-circle"],
-.user [name="people"],
-.active-users [name="checkmark-outline"]{
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.user [name="person-circle"]{
+.user [name="person-circle"],
+.privacy-option [name="lock-open"],
+.privacy-option [name="lock-closed"]{
   font-size: 20.3px;
   margin-right: 9.3px;
 }
@@ -129,8 +131,8 @@ body{
   margin-right: 7.8px;
 }
 
-.user span,
-.all span{
+.username,
+.privacy-value{
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -139,13 +141,18 @@ body{
   flex-shrink: 1;
 }
 
-.active-users [name="checkmark-sharp"]{
+.room [name="checkmark-sharp"]{
   color: green;
   display: none;
+  font-size: 16px;
 }
 
-.active-users .selected [name="checkmark-sharp"]{
+.room .selected [name="checkmark-sharp"]{
   display: inline-block;
+}
+
+.privacy header{
+  height: 66px;
 }
 
 .chat-header,
@@ -165,8 +172,6 @@ body{
 .chat-footer [name="paper-plane-outline"]{
   font-size: 42px;
   cursor: pointer;
-  flex-grow: 0;
-  flex-shrink: 0;
 }
 
 .chat-header {
