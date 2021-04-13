@@ -3,26 +3,70 @@ body{
   background-color: #f3f3f3;
 }
 
-.chat-header{
+.chat-header,
+.chat-footer{
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   height: 80px;
+  position: fixed;
+  left: 0;
   background: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
-  padding-left: 22px;
-  padding-right: 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.chat-header [name="people"],
+.chat-footer [name="paper-plane-outline"]{
+  font-size: 42px;
+  cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.chat-header {
+  top: 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  padding-left: 22px;
+  padding-right: 22px;
 }
 
 .chat-header img{
   cursor: pointer;
 }
 
-.chat-header [name="people"]{
-  font-size: 42px;
-  cursor: pointer;
+.chat-footer{
+  bottom: 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+  padding-left: 17px;
+  padding-right: 18px;
+}
+
+.message-container{
+  flex-grow: 1;
+}
+
+.message-container p{
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+.chat-footer input{
+  font-size: 18px;
+  line-height: 21px;
+  width: calc(100% - 15px);
+  border: none;
+  color: black;
+  margin-right: 15px;
+  height: 42px;
+}
+
+.chat-footer input::placeholder{
+  font-style: italic;
+  color: black;
+  opacity: 1;
+}
+
+.chat-footer input:focus-visible{
+  outline:1px solid rgba(0, 0, 0, 0.1);
 }
