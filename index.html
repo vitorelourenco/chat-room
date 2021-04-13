@@ -6,9 +6,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bate Papo da UOL</title>
   <link rel="stylesheet" href="styles/reset.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+  <section class="room">
+    <div class="active-users">
+      <header>Escolha um contato para enviar mensagem:</header>
+      <div class="all">
+        <ion-icon name="people"></ion-icon>
+        <span class="username">Todos</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+      <div class="user selected">
+        <ion-icon name="person-circle"></ion-icon>
+        <span class="username">Joao</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+      <div class="user">
+        <ion-icon name="person-circle"></ion-icon>
+        <span class="username">Maria</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+    </div>
+    <div class="privacy">
+      <header>Escolha uma visibilidade:</header>
+      <div class="privacy-option">
+        <ion-icon name="lock-open"></ion-icon>
+        <span class="privacy-value">Publico</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+      <div class="privacy-option selected">
+        <ion-icon name="lock-closed"></ion-icon>
+        <span class="privacy-value">Reservadamente</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+    </div>
+  </section>
+
+  <section class="overlay">
+  </section>
+
+  <section class="login-screen">
+    <article class="credentials">
+      <img class="logo" src="assets/images/logo 2.png">
+      <div class="static">
+        <input type="text" placeholder="Digite seu nome">
+        <button>Entrar</button>
+      </div>
+      <div class="loading d-none">
+        <img src="assets/images/loading.png">
+        Entrando...
+      </div>
+    </article>
+  </section>
+
+  <header class="chat-header">
+    <img src="assets/images/logo 1.png">
+    <ion-icon name="people"></ion-icon>
+  </header>
+  <section class="chat-body">
+    <div class="message bg-in-out">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      entra na sala...
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Maria</span>&nbsp;
+      para&nbsp;
+      <span class="target">Joao</span>:&nbsp;
+      Oi Joao :)
+    </div>
+    <div class="message bg-dm">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      reservadamente para&nbsp;
+      <span class="target">Maria</span>:&nbsp;
+      Oi gatinha quer tc?
+    </div>
+    <div class="message bg-in-out">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Maria</span>&nbsp;
+      sai da sala...
+    </div>
+  </section>
+  <footer class="chat-footer">
+    <div class="new-message-container">
+      <input type="text" placeholder="Escreva aqui...">
+      <p>Enviando para Maria (reservadamente)</p>
+    </div>
+    <ion-icon name="paper-plane-outline"></ion-icon>
+  </footer>
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="scrips/main.js"></script>
 </body>
 </html>

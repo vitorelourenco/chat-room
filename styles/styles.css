@@ -1,1 +1,281 @@
-body{background-color: red;}
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #f3f3f3;
+}
+
+ion-icon{
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.login-screen{
+  position: fixed;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+}
+
+.credentials{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.static input{
+  width: 260px;
+  height: 54px;
+  border-radius: 4px;
+  border: 1px solid #d7d7d7;
+  margin-bottom: 15px;
+}
+
+.static input::placeholder{
+  color: #aeaeae;
+  opacity: 1;
+  text-align: center;
+}
+
+.static button{
+  border-radius: 9px;
+  background-color: #e7e7e7;
+  border: 1px solid #e7e7e7;
+  width: 109px;
+  height: 45px;
+  color: #696969;
+  cursor: pointer;
+}
+
+.credentials .logo{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -186px);
+}
+
+.static,
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 130px;
+}
+
+.loading img{
+  margin-bottom: 10px;
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+}
+
+.room{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 260px;
+  z-index: 300;
+  background-color: white;
+  transition: transform 0.3s ease;
+  font-size: 16px;
+  line-height: 18.75px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.room-hidden{
+  transform: translateX(100%);
+}
+
+.room header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.active-users header{
+  height: 84px;
+}
+
+.user,
+.all,
+.privacy-option {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.user,
+.privacy-option{
+  margin-left: 1.5px;
+}
+
+.user [name="person-circle"],
+.privacy-option [name="lock-open"],
+.privacy-option [name="lock-closed"]{
+  font-size: 20.3px;
+  margin-right: 9.3px;
+}
+
+.all [name="people"]{
+  font-size: 23.3px;
+  margin-right: 7.8px;
+}
+
+.username,
+.privacy-value{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.room [name="checkmark-sharp"]{
+  color: green;
+  display: none;
+  font-size: 16px;
+}
+
+.room .selected [name="checkmark-sharp"]{
+  display: initial;
+}
+
+.privacy header{
+  height: 66px;
+}
+
+.chat-header,
+.chat-footer{
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  left: 0;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.chat-header [name="people"]{
+  font-size: 42px;
+  cursor: pointer;
+}
+
+.chat-header {
+  top: 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.chat-header img{
+  cursor: pointer;
+}
+
+.chat-footer{
+  bottom: 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+  padding-left: 17px;
+  padding-right: 18px;
+}
+
+.new-message-container{
+  flex-grow: 1;
+}
+
+.new-message-container p{
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+.new-message-container input{
+  font-size: 18px;
+  line-height: 21px;
+  width: calc(100% - 15px);
+  border: none;
+  color: black;
+  margin-right: 15px;
+  height: 30px;
+}
+
+.new-message-container input::placeholder{
+  font-style: italic;
+  color: black;
+  opacity: 1;
+}
+
+.new-message-container input:focus-visible{
+  outline:1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat-footer [name="paper-plane-outline"]{
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.chat-body{
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
+
+.message{
+  padding: 12px 8px;
+  color: black;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.bg-in-out{
+  background-color: #dcdcdc;
+}
+
+.bg-plain{
+  background-color: white;
+}
+
+.bg-dm{
+  background-color: #ffdede;
+}
+
+.sender,
+.target{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.timestamp{
+  color: #aaaaaa;
+}
+
+.d-none{
+  display: none;
+}
