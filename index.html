@@ -12,13 +12,25 @@
 </head>
 <body>
   <section class="room room-hidden">
-    <p>Escolha um contato para enviar mensagem:</p>
-    <div class="users">
-      <div>
-        <span>Todos</span>
+    <header>Escolha um contato para enviar mensagem:</header>
+    <div class="active-users">
+      <div class="all">
+        <ion-icon name="people"></ion-icon>
+        <span class="username">Todos</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+      <div class="user selected">
+        <ion-icon name="person-circle"></ion-icon>
+        <span class="username">Joao</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+      <div class="user">
+        <ion-icon name="person-circle"></ion-icon>
+        <span class="username">Maria</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
       </div>
     </div>
-    <div class="visibility">
+    <div class="privacy">
       <div>
         <span>Publico</span>
       </div>
@@ -54,7 +66,7 @@
   </footer>
   <!-- <ion-icon name="lock-open"></ion-icon>
   <ion-icon name="lock-closed"></ion-icon>
-  <ion-icon name="person-circle"></ion-icon>
+  
  -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="scrips/main.js"></script>

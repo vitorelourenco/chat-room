@@ -74,12 +74,79 @@ body{
   z-index: 300;
   background-color: white;
   transition: transform 0.3s ease;
+  font-size: 16px;
+  line-height: 18.75px;
 }
 
-.room-hidden{
+/* .room-hidden{
   transform: translateX(100%);
+} */
+
+.room header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+  height: 84px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
+.active-users{
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.user,
+.all {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.user{
+  margin-left: 1.5px;
+}
+
+.all [name="person-circle"],
+.user [name="people"],
+.active-users [name="checkmark-outline"]{
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.user [name="person-circle"]{
+  font-size: 20.3px;
+  margin-right: 9.3px;
+}
+
+.all [name="people"]{
+  font-size: 23.3px;
+  margin-right: 7.8px;
+}
+
+.user span,
+.all span{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.active-users [name="checkmark-sharp"]{
+  color: green;
+  display: none;
+}
+
+.active-users .selected [name="checkmark-sharp"]{
+  display: inline-block;
+}
 
 .chat-header,
 .chat-footer{
