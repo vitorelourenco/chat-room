@@ -30,7 +30,7 @@ ion-icon{
   line-height: 25px;
 }
 
-.credentials input{
+.static input{
   width: 260px;
   height: 54px;
   border-radius: 4px;
@@ -38,13 +38,13 @@ ion-icon{
   margin-bottom: 15px;
 }
 
-.credentials input::placeholder{
+.static input::placeholder{
   color: #aeaeae;
   opacity: 1;
   text-align: center;
 }
 
-.credentials button{
+.static button{
   border-radius: 9px;
   background-color: #e7e7e7;
   border: 1px solid #e7e7e7;
@@ -54,11 +54,23 @@ ion-icon{
   cursor: pointer;
 }
 
-.credentials img{
+.credentials .logo{
   position: absolute;
   left: 50%;
   top: 0;
   transform: translate(-50%, -186px);
+}
+
+.static,
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 130px;
+}
+
+.loading img{
+  margin-bottom: 10px;
 }
 
 .overlay{
@@ -149,7 +161,7 @@ ion-icon{
 }
 
 .room .selected [name="checkmark-sharp"]{
-  display: inline-block;
+  display: initial;
 }
 
 .privacy header{
