@@ -51,6 +51,7 @@ ion-icon{
   width: 109px;
   height: 45px;
   color: #696969;
+  cursor: pointer;
 }
 
 .credentials img{
@@ -168,8 +169,7 @@ ion-icon{
   z-index: 100;
 }
 
-.chat-header [name="people"],
-.chat-footer [name="paper-plane-outline"]{
+.chat-header [name="people"]{
   font-size: 42px;
   cursor: pointer;
 }
@@ -192,34 +192,76 @@ ion-icon{
   padding-right: 18px;
 }
 
-.message-container{
+.new-message-container{
   flex-grow: 1;
 }
 
-.message-container p{
+.new-message-container p{
   font-size: 14px;
   font-weight: 300;
   line-height: 25px;
 }
 
-.chat-footer input{
+.new-message-container input{
   font-size: 18px;
   line-height: 21px;
   width: calc(100% - 15px);
   border: none;
   color: black;
   margin-right: 15px;
-  height: 42px;
+  height: 30px;
 }
 
-.chat-footer input::placeholder{
+.new-message-container input::placeholder{
   font-style: italic;
   color: black;
   opacity: 1;
 }
 
-.chat-footer input:focus-visible{
+.new-message-container input:focus-visible{
   outline:1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat-footer [name="paper-plane-outline"]{
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.chat-body{
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
+
+.message{
+  padding: 12px 8px;
+  color: black;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.bg-in-out{
+  background-color: #dcdcdc;
+}
+
+.bg-plain{
+  background-color: white;
+}
+
+.bg-dm{
+  background-color: #ffdede;
+}
+
+.sender,
+.target{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.timestamp{
+  color: #aaaaaa;
 }
 
 .d-none{

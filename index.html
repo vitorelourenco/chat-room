@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-  <section class="room room-hidden">
+  <section class="room">
     <div class="active-users">
       <header>Escolha um contato para enviar mensagem:</header>
       <div class="all">
@@ -42,7 +42,6 @@
         <span class="privacy-value">Reservadamente</span>
         <ion-icon name="checkmark-sharp"></ion-icon>
       </div>
-
     </div>
   </section>
 
@@ -61,10 +60,40 @@
     <ion-icon name="people"></ion-icon>
   </header>
   <section class="chat-body">
-
+    <div class="message bg-in-out">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      entra na sala...
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Maria</span>&nbsp;
+      para&nbsp;
+      <span class="target">Joao</span>:&nbsp;
+      Oi Joao :)
+    </div>
+    <div class="message bg-dm">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      reservadamente para&nbsp;
+      <span class="target">Maria</span>:&nbsp;
+      Oi gatinha quer tc?
+    </div>
+    <div class="message bg-in-out">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Maria</span>&nbsp;
+      sai da sala...
+    </div>
   </section>
   <footer class="chat-footer">
-    <div class="message-container">
+    <div class="new-message-container">
       <input type="text" placeholder="Escreva aqui...">
       <p>Enviando para Maria (reservadamente)</p>
     </div>
