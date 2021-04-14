@@ -11,41 +11,43 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-  <section class="room">
-    <div class="active-users">
-      <header>Escolha um contato para enviar mensagem:</header>
-      <div class="all">
-        <ion-icon name="people"></ion-icon>
-        <span class="username">Todos</span>
-        <ion-icon name="checkmark-sharp"></ion-icon>
+  <section class="room-container room-hidden">
+    <div class="room">
+      <div class="active-users">
+        <header>Escolha um contato para enviar mensagem:</header>
+        <div onclick='setTarget(this)' class="all selected">
+          <ion-icon name="people"></ion-icon>
+          <span class="username">Todos</span>
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        <div onclick='setTarget(this)' class="user">
+          <ion-icon name="person-circle"></ion-icon>
+          <span class="username">Joao</span>
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        <div onclick='setTarget(this)' class="user">
+          <ion-icon name="person-circle"></ion-icon>
+          <span class="username">Maria</span>
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
       </div>
-      <div class="user selected">
-        <ion-icon name="person-circle"></ion-icon>
-        <span class="username">Joao</span>
-        <ion-icon name="checkmark-sharp"></ion-icon>
+      <div class="privacy">
+        <header>Escolha uma visibilidade:</header>
+        <div onclick='setPrivacy(this)' class="privacy-option selected">
+          <ion-icon name="lock-open"></ion-icon>
+          <span class="privacy-value">Publico</span>
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        <div onclick='setPrivacy(this)' class="privacy-option">
+          <ion-icon name="lock-closed"></ion-icon>
+          <span class="privacy-value">Reservadamente</span>
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
       </div>
-      <div class="user">
-        <ion-icon name="person-circle"></ion-icon>
-        <span class="username">Maria</span>
-        <ion-icon name="checkmark-sharp"></ion-icon>
-      </div>
-    </div>
-    <div class="privacy">
-      <header>Escolha uma visibilidade:</header>
-      <div class="privacy-option">
-        <ion-icon name="lock-open"></ion-icon>
-        <span class="privacy-value">Publico</span>
-        <ion-icon name="checkmark-sharp"></ion-icon>
-      </div>
-      <div class="privacy-option selected">
-        <ion-icon name="lock-closed"></ion-icon>
-        <span class="privacy-value">Reservadamente</span>
-        <ion-icon name="checkmark-sharp"></ion-icon>
-      </div>
-    </div>
+    </room>
   </section>
 
-  <section class="overlay">
+  <section class="overlay d-none" onclick="hideRoom()">
   </section>
 
   <section class="login-screen">
@@ -53,7 +55,7 @@
       <img class="logo" src="assets/images/logo 2.png">
       <div class="static">
         <input type="text" placeholder="Digite seu nome">
-        <button>Entrar</button>
+        <button onclick='login()'>Entrar</button>
       </div>
       <div class="loading d-none">
         <img src="assets/images/loading.png">
@@ -63,14 +65,182 @@
   </section>
 
   <header class="chat-header">
-    <img src="assets/images/logo 1.png">
-    <ion-icon name="people"></ion-icon>
+    <a href="#"><img src="assets/images/logo 1.png"></a>
+    <ion-icon onclick="showRoom()" name="people"></ion-icon>
   </header>
   <section class="chat-body">
     <div class="message bg-in-out">
       <span class="timestamp">(09:21:25)</span>&nbsp;
       <span class="sender">Joao</span>&nbsp;
       entra na sala...
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
+    </div>
+    <div class="message bg-plain">
+      <span class="timestamp">(09:21:25)</span>&nbsp;
+      <span class="sender">Joao</span>&nbsp;
+      para&nbsp;
+      <span class="target">Todos</span>:&nbsp;
+      Bom dia
     </div>
     <div class="message bg-plain">
       <span class="timestamp">(09:21:25)</span>&nbsp;
@@ -102,7 +272,7 @@
   <footer class="chat-footer">
     <div class="new-message-container">
       <input type="text" placeholder="Escreva aqui...">
-      <p>Enviando para Maria (reservadamente)</p>
+      <p class="message-summary">Enviando para Todos (Publico)</p>
     </div>
     <ion-icon name="paper-plane-outline"></ion-icon>
   </footer>
