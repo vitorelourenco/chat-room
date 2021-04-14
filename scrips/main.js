@@ -7,6 +7,7 @@ const roomContainer = document.querySelector('.room-container');
 const messageSummary = document.querySelector('.message-summary');
 const messageInput = document.querySelector('.new-message-container input');
 const chatBody = document.querySelector('.chat-body');
+const dynamicUsers = document.querySelector('.dynamic-users')
 let target = 'Todos';
 let privacy = 'message';
 let username;
@@ -23,24 +24,31 @@ function login(){
       updateMessages();
       setInterval(updateActiveUsers, 10000); 
       setInterval(updateMessages, 3000);
+      setInterval(pokeServer, 5000);
     })
-    .catch();
+    .catch(()=>{
+      loginStatic.classList.remove('d-none');
+      loginLoading.classList.add('d-none');
+      setTimeout(()=>alert('Esse nome ja esta em uso, tente outro nome'), 200);
+    });
 }
 
-function resetMessageText(){
-  messageInput.value = '';
+function pokeServer(){
+  axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', {name:username});
 }
 
 function sendMessage(){
   currentMessage = messageInput.value;
+  messageInput.value = '';
+  console.log();
   axios
     .post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages'
       , {from: username, to: target, text: currentMessage, type: privacy})
     .then(()=>{
-      resetMessageText();
+      updateMessages();
     })
     .catch(()=>{
-      alert('mensagem nao enviada');
+      window.location.reload();
     });
 }
 
@@ -95,18 +103,52 @@ function setPrivacy(domElem){
 }
 
 function updateActiveUsers(){
-  
+  axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
+  .then(({data})=>{
+    dynamicUsers.innerHTML = '';
+    data.forEach((elem)=>{
+      dynamicUsers.innerHTML += 
+        `
+        <ion-icon name="people"></ion-icon>
+        <span class="username">${elem.name}</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+        `
+    });
+  });
+}
+
+function getBackgroundClass(obj){
+  if (obj.type === 'private_message') return 'bg-dm';
+  if (obj.type === 'status') return 'bg-in-out';
+  return 'bg-plain'
+}
+
+function getMessageComplement(obj){
+  if (obj.text === 'entra na sala...') return 'entra na sala...';
+  if (obj.text === 'sai da sala...') return 'sai da sala...';
+  let placeholder = ' ';
+  if (obj.type === 'private_message'){
+    placeholder = 'reservadamente ';
+  } 
+  const complement = 
+`
+${placeholder}para&nbsp;
+<span class="target">${obj.to}</span>:&nbsp;
+${obj.text}
+`
+  return complement;
 }
 
 function formatMessage(obj){
+  if (obj.type === 'private_message' && obj.to !== username && obj.from !== username) return '';
+
   const formatedMessage = `
-    <div class="message bg-dm">
-      <span class="timestamp">(09:21:25)</span>&nbsp;
-      <span class="sender">Joao</span>&nbsp;
-      reservadamente para&nbsp;
-      <span class="target">Maria</span>:&nbsp;
-      Oi gatinha quer tc?
+    <div class="message ${getBackgroundClass(obj)}">
+      <span class="timestamp">${obj.time}</span>&nbsp;
+      <span class="sender">${obj.from}</span>&nbsp;
+      ${getMessageComplement(obj)}
     </div>`
+
   return formatedMessage;
 }
 
@@ -116,6 +158,7 @@ function updateMessages(){
     .then(({data})=>{
       chatBody.innerHTML = '';
       data.forEach(elem=>{chatBody.innerHTML += formatMessage(elem)});
+      console.log(data);
     })
     .catch();
 }
