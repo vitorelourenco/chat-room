@@ -211,6 +211,7 @@ ion-icon{
 
 .new-message-container{
   flex-grow: 1;
+  max-width: calc(100% - 31px);
 }
 
 .new-message-container p{
@@ -222,7 +223,7 @@ ion-icon{
 .new-message-container input{
   font-size: 18px;
   line-height: 21px;
-  width: calc(100% - 15px);
+  width: 100%;
   border: none;
   color: black;
   margin-right: 15px;
@@ -237,6 +238,12 @@ ion-icon{
 
 .new-message-container input:focus-visible{
   outline:1px solid rgba(0, 0, 0, 0.1);
+}
+
+.message-summary{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .chat-footer [name="paper-plane-outline"]{
