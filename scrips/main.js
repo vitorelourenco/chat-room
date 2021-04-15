@@ -4,6 +4,7 @@ const loginScreen = document.querySelector('.login-screen');
 const loginInput = loginStatic.querySelector('INPUT');
 const overlay = document.querySelector('.overlay');
 const roomContainer = document.querySelector('.room-container');
+const activeUsers = document.querySelector('.active-users');
 const messageSummary = document.querySelector('.message-summary');
 const messageInput = document.querySelector('.new-message-container input');
 const chatBody = document.querySelector('.chat-body');
@@ -72,19 +73,22 @@ function hideRoom(){
   }, 300);
 }
 
-function selectUnique(domElem){
-  domElem
-    .parentNode
-    .querySelector('.selected')
-    .classList
-    .remove('selected');
-  domElem.classList.add('selected');
-}
-
 function updateSummary(){
-  const privacyText = privacy === 'mensagem' ? 'Publico' : 'Reservadamente';
+  const privacyText = privacy === 'message' ? 'Publico' : 'Reservadamente';
   messageSummary.textContent = `Enviando para ${target} (${privacyText})`;
 };
+
+function selectUnique(domElem){
+  let head = domElem;
+  while (!head.classList.contains('head-node')){
+    head = head.parentNode;
+  }
+  const oldSelected = head.querySelector('.selected');
+  if (oldSelected !== null){
+    oldSelected.classList.remove('selected');
+  }
+  domElem.classList.add('selected');
+}
 
 function setTarget(domElem){
   selectUnique(domElem);
@@ -103,17 +107,36 @@ function setPrivacy(domElem){
 }
 
 function updateActiveUsers(){
-  axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
+  axios
+  .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
   .then(({data})=>{
+    const oldActiveSelected = activeUsers.querySelector('.selected');
+    let oldSelectedUsername = null;
+    if (oldActiveSelected !== null){
+      oldSelectedUsername = oldActiveSelected.querySelector('.username').textContent;
+    }
     dynamicUsers.innerHTML = '';
+    let placeholder;
+    let flagged = false;
     data.forEach((elem)=>{
+      if (elem.name === oldSelectedUsername){
+        placeholder = ' selected';
+        flagged = true;
+      } else {
+        placeholder = '';
+      }
       dynamicUsers.innerHTML += 
         `
-        <ion-icon name="people"></ion-icon>
-        <span class="username">${elem.name}</span>
-        <ion-icon name="checkmark-sharp"></ion-icon>
+        <div onclick='setTarget(this)' class="user${placeholder}">
+          <ion-icon name="person-circle""></ion-icon>
+          <span class="username">${elem.name}</span>
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
         `
     });
+    if (!flagged){
+      setTarget(document.querySelector('.all'));
+    }
   });
 }
 
