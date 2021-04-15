@@ -111,7 +111,6 @@ function updateActiveUsers(){
   axios
   .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
   .then(({data})=>{
-    let flagged = false;
     dynamicUsers.innerHTML = '';
     let placeholder;
     data.forEach((elem)=>{
@@ -120,7 +119,7 @@ function updateActiveUsers(){
       } else {
         placeholder = '';
       }
-      dynamicUsers.innerHTML += 
+      dynamicUsers.innerHTML +=
         `
         <div onclick='setTarget(this)' class="user${placeholder}">
           <ion-icon name="person-circle""></ion-icon>
@@ -159,7 +158,7 @@ function formatMessage(obj){
 
   const formatedMessage = `
     <div class="message ${getBackgroundClass(obj)}">
-      <span class="timestamp">${obj.time}</span>&nbsp;
+      <span class="timestamp">(${obj.time})</span>&nbsp;
       <span class="sender">${obj.from}</span>&nbsp;
       ${getMessageComplement(obj)}
     </div>`
