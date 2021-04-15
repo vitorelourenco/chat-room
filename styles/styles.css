@@ -83,23 +83,28 @@ ion-icon{
   z-index: 200;
 }
 
-.room{
+.room-container{
   position: fixed;
   top: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   width: 260px;
   z-index: 300;
   background-color: white;
   transition: transform 0.3s ease;
   font-size: 16px;
   line-height: 18.75px;
-  padding-left: 18px;
-  padding-right: 18px;
 }
 
 .room-hidden{
   transform: translateX(100%);
+}
+
+.room{
+  height: 100%;
+  overflow-y: scroll;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 .room header{
@@ -206,6 +211,7 @@ ion-icon{
 
 .new-message-container{
   flex-grow: 1;
+  max-width: calc(100% - 31px);
 }
 
 .new-message-container p{
@@ -217,7 +223,7 @@ ion-icon{
 .new-message-container input{
   font-size: 18px;
   line-height: 21px;
-  width: calc(100% - 15px);
+  width: 100%;
   border: none;
   color: black;
   margin-right: 15px;
@@ -234,6 +240,12 @@ ion-icon{
   outline:1px solid rgba(0, 0, 0, 0.1);
 }
 
+.message-summary{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .chat-footer [name="paper-plane-outline"]{
   font-size: 26px;
   cursor: pointer;
@@ -243,7 +255,8 @@ ion-icon{
   margin-top: 80px;
   margin-bottom: 80px;
   padding-top: 26px;
-  padding-bottom: 26px;
+  overflow-y: scroll;
+  height: calc(100vh - 160px);
 }
 
 .message{
@@ -252,6 +265,11 @@ ion-icon{
   margin-bottom: 4px;
   font-size: 14px;
   line-height: 17px;
+  word-break: break-all;
+}
+
+.message:last-child{
+  margin-bottom: 26px;
 }
 
 .bg-in-out{
