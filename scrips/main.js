@@ -128,7 +128,6 @@ function updateActiveUsers(){
         </div>
         `
     });
-    landed = true;
   });
 }
 
@@ -181,9 +180,26 @@ function updateMessages(){
 function setTargetOnClick(elem){
   const user = elem.textContent;
   if (user === username) return;
-  updateActiveUsers();
-  // djshfksdhfosh i dont know how to work with async code yet . settimeout it is!
-  setTimeout(()=>{
+  axios
+  .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
+  .then(({data})=>{
+    dynamicUsers.innerHTML = '';
+    let placeholder;
+    data.forEach((elem)=>{
+      if (elem.name === target){
+        placeholder = ' selected';
+      } else {
+        placeholder = '';
+      }
+      dynamicUsers.innerHTML +=
+        `
+        <div onclick='setTarget(this)' class="user${placeholder}">
+          <ion-icon name="person-circle""></ion-icon>
+          <span class="username">${elem.name}</span>
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        `
+    })
     const userList = document.querySelectorAll('.all,.user');
     for(let i=0; i<userList.length; i++){
       console.log(userList[i].querySelector('.username'));
@@ -191,5 +207,5 @@ function setTargetOnClick(elem){
         setTarget(userList[i]);
       }
     }
-  },200);
+  });
 }
