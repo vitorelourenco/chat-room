@@ -41,7 +41,6 @@ function pokeServer(){
 function sendMessage(){
   currentMessage = messageInput.value;
   messageInput.value = '';
-  console.log();
   axios
     .post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages'
       , {from: username, to: target, text: currentMessage, type: privacy})
@@ -91,6 +90,8 @@ function selectUnique(domElem){
 }
 
 function setTarget(domElem){
+  const isMe = domElem.querySelector('.username') && domElem.querySelector('.username').textContent;
+  if (isMe === username) return;
   selectUnique(domElem);
   target = domElem.querySelector('.username').textContent;
   updateSummary();
@@ -110,18 +111,12 @@ function updateActiveUsers(){
   axios
   .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
   .then(({data})=>{
-    const oldActiveSelected = activeUsers.querySelector('.selected');
-    let oldSelectedUsername = null;
-    if (oldActiveSelected !== null){
-      oldSelectedUsername = oldActiveSelected.querySelector('.username').textContent;
-    }
+    let flagged = false;
     dynamicUsers.innerHTML = '';
     let placeholder;
-    let flagged = false;
     data.forEach((elem)=>{
-      if (elem.name === oldSelectedUsername){
+      if (elem.name === target){
         placeholder = ' selected';
-        flagged = true;
       } else {
         placeholder = '';
       }
@@ -134,9 +129,6 @@ function updateActiveUsers(){
         </div>
         `
     });
-    if (!flagged){
-      setTarget(document.querySelector('.all'));
-    }
   });
 }
 
@@ -154,11 +146,11 @@ function getMessageComplement(obj){
     placeholder = 'reservadamente ';
   } 
   const complement = 
-`
-${placeholder}para&nbsp;
-<span class="target">${obj.to}</span>:&nbsp;
-${obj.text}
-`
+    `
+    ${placeholder}para&nbsp;
+    <span class="target">${obj.to}</span>:&nbsp;
+    ${obj.text}
+    `
   return complement;
 }
 
@@ -181,7 +173,6 @@ function updateMessages(){
     .then(({data})=>{
       chatBody.innerHTML = '';
       data.forEach(elem=>{chatBody.innerHTML += formatMessage(elem)});
-      console.log(data);
       document.querySelector(".message:last-child").scrollIntoView();
     })
     .catch();
