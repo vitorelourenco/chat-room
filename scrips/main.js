@@ -128,6 +128,7 @@ function updateActiveUsers(){
         </div>
         `
     });
+    landed = true;
   });
 }
 
@@ -181,11 +182,14 @@ function setTargetOnClick(elem){
   const user = elem.textContent;
   if (user === username) return;
   updateActiveUsers();
-  const userList = document.querySelectorAll('.all,.user');
-  for(let i=0; i<userList.length; i++){
-    console.log(userList[i].querySelector('.username'));
-    if (userList[i].querySelector('.username').textContent === user){
-      setTarget(userList[i]);
+  // djshfksdhfosh i dont know how to work with async code yet . settimeout it is!
+  setTimeout(()=>{
+    const userList = document.querySelectorAll('.all,.user');
+    for(let i=0; i<userList.length; i++){
+      console.log(userList[i].querySelector('.username'));
+      if (userList[i].querySelector('.username').textContent === user){
+        setTarget(userList[i]);
+      }
     }
-  }
+  },200);
 }
