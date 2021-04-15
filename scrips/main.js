@@ -147,7 +147,7 @@ function getMessageComplement(obj){
   const complement = 
     `
     ${placeholder}para&nbsp;
-    <span class="target">${obj.to}</span>:&nbsp;
+    <span onclick='setTargetOnClick(this)' class="target">${obj.to}</span>:&nbsp;
     ${obj.text}
     `
   return complement;
@@ -159,7 +159,7 @@ function formatMessage(obj){
   const formatedMessage = `
     <div class="message ${getBackgroundClass(obj)}">
       <span class="timestamp">(${obj.time})</span>&nbsp;
-      <span class="sender">${obj.from}</span>&nbsp;
+      <span onclick='setTargetOnClick(this)' class="sender">${obj.from}</span>&nbsp;
       ${getMessageComplement(obj)}
     </div>`
 
@@ -175,4 +175,17 @@ function updateMessages(){
       document.querySelector(".message:last-child").scrollIntoView();
     })
     .catch();
+}
+
+function setTargetOnClick(elem){
+  const user = elem.textContent;
+  if (user === username) return;
+  updateActiveUsers();
+  const userList = document.querySelectorAll('.all,.user');
+  for(let i=0; i<userList.length; i++){
+    console.log(userList[i].querySelector('.username'));
+    if (userList[i].querySelector('.username').textContent === user){
+      setTarget(userList[i]);
+    }
+  }
 }
