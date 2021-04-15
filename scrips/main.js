@@ -182,6 +182,7 @@ function updateMessages(){
       chatBody.innerHTML = '';
       data.forEach(elem=>{chatBody.innerHTML += formatMessage(elem)});
       console.log(data);
+      document.querySelector(".message:last-child").scrollIntoView();
     })
     .catch();
 }
