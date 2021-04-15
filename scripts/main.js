@@ -18,21 +18,25 @@ function login(){
   loginLoading.classList.remove('d-none');
   username = document.querySelector('.static INPUT').value;
   axios
-    .post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants', {name: username})
-    .then(()=>{
-      loginScreen.classList.add('d-none');
-      updateActiveUsers();
-      updateMessages();
-      setInterval(updateActiveUsers, 10000); 
-      setInterval(updateMessages, 3000);
-      setInterval(pokeServer, 5000);
-    })
-    .catch(()=>{
-      loginStatic.classList.remove('d-none');
-      loginLoading.classList.add('d-none');
-      setTimeout(()=>alert('Esse nome ja esta em uso, tente outro nome'), 200);
-    });
+  .post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants', {name: username})
+  .then(()=>{
+    loginScreen.classList.add('d-none');
+    updateActiveUsers();
+    updateMessages();
+    setInterval(updateActiveUsers, 10000); 
+    setInterval(updateMessages, 3000);
+    setInterval(pokeServer, 5000);
+  })
+  .catch(()=>{
+    loginStatic.classList.remove('d-none');
+    loginLoading.classList.add('d-none');
+    setTimeout(()=>alert('Esse nome ja esta em uso, tente outro nome'), 200);
+  });
 }
+
+loginInput.addEventListener('keydown', (e)=>{
+  if (e.key === 'Enter') login();
+});
 
 function pokeServer(){
   axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', {name:username});
@@ -40,6 +44,7 @@ function pokeServer(){
 
 function sendMessage(){
   currentMessage = messageInput.value;
+  if (currentMessage === '') return;
   messageInput.value = '';
   axios
     .post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages'
@@ -51,10 +56,6 @@ function sendMessage(){
       window.location.reload();
     });
 }
-
-loginInput.addEventListener('keydown', (e)=>{
-  if (e.key === 'Enter') login();
-});
 
 messageInput.addEventListener('keydown', (e)=>{
   if (e.key === 'Enter') sendMessage();
@@ -72,10 +73,25 @@ function hideRoom(){
   }, 300);
 }
 
-function updateSummary(){
-  const privacyText = privacy === 'message' ? 'Publico' : 'Reservadamente';
-  messageSummary.textContent = `Enviando para ${target} (${privacyText})`;
-};
+function renderActiveUsers(data){
+  dynamicUsers.innerHTML = '';
+  let placeholder;
+  data.forEach((elem)=>{
+    if (elem.name === target){
+      placeholder = ' selected';
+    } else {
+      placeholder = '';
+    }
+    dynamicUsers.innerHTML +=
+      `
+      <div onclick='setTarget(this)' class="user${placeholder}">
+        <ion-icon name="person-circle""></ion-icon>
+        <span class="username">${elem.name}</span>
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </div>
+      `
+  });
+}
 
 function selectUnique(domElem){
   let head = domElem;
@@ -89,6 +105,8 @@ function selectUnique(domElem){
   domElem.classList.add('selected');
 }
 
+//setTarget fires when the user clicks a username in the room sidebar
+//setTarget gets called by setTargetOnClick 
 function setTarget(domElem){
   const whoThis = domElem.querySelector('.username').textContent;
   if (whoThis === username) return;
@@ -97,6 +115,8 @@ function setTarget(domElem){
   updateSummary();
 }
 
+//setPrivacy fires when the user clicks Reservadamente or Publico in the room sidebar
+//setting the global variable privacy to either 'message' or 'private_message'
 function setPrivacy(domElem){
   selectUnique(domElem);
   if (domElem.querySelector('.privacy-value').textContent === 'Publico'){
@@ -107,27 +127,35 @@ function setPrivacy(domElem){
   updateSummary();
 }
 
+//setTargetOnClick fires when the user clicks a bold username on the messages body
+//setting the global variable target to the username clicked
+function setTargetOnClick(elem){
+  const user = elem.textContent;
+  if (user === username) return;
+  axios
+  .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
+  .then(({data})=>{
+    renderActiveUsers(data);
+    const userList = document.querySelectorAll('.all,.user');
+    for(let i=0; i<userList.length; i++){
+      if (userList[i].querySelector('.username').textContent === user){
+        setTarget(userList[i]);
+      }
+    }
+  });
+}
+
+//updateSummary
+function updateSummary(){
+  const privacyText = privacy === 'message' ? 'Publico' : 'Reservadamente';
+  messageSummary.textContent = `Enviando para ${target} (${privacyText})`;
+};
+
 function updateActiveUsers(){
   axios
   .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
   .then(({data})=>{
-    dynamicUsers.innerHTML = '';
-    let placeholder;
-    data.forEach((elem)=>{
-      if (elem.name === target){
-        placeholder = ' selected';
-      } else {
-        placeholder = '';
-      }
-      dynamicUsers.innerHTML +=
-        `
-        <div onclick='setTarget(this)' class="user${placeholder}">
-          <ion-icon name="person-circle""></ion-icon>
-          <span class="username">${elem.name}</span>
-          <ion-icon name="checkmark-sharp"></ion-icon>
-        </div>
-        `
-    });
+    renderActiveUsers(data);
   });
 }
 
@@ -175,37 +203,4 @@ function updateMessages(){
       document.querySelector(".message:last-child").scrollIntoView();
     })
     .catch();
-}
-
-function setTargetOnClick(elem){
-  const user = elem.textContent;
-  if (user === username) return;
-  axios
-  .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants')
-  .then(({data})=>{
-    dynamicUsers.innerHTML = '';
-    let placeholder;
-    data.forEach((elem)=>{
-      if (elem.name === target){
-        placeholder = ' selected';
-      } else {
-        placeholder = '';
-      }
-      dynamicUsers.innerHTML +=
-        `
-        <div onclick='setTarget(this)' class="user${placeholder}">
-          <ion-icon name="person-circle""></ion-icon>
-          <span class="username">${elem.name}</span>
-          <ion-icon name="checkmark-sharp"></ion-icon>
-        </div>
-        `
-    })
-    const userList = document.querySelectorAll('.all,.user');
-    for(let i=0; i<userList.length; i++){
-      console.log(userList[i].querySelector('.username'));
-      if (userList[i].querySelector('.username').textContent === user){
-        setTarget(userList[i]);
-      }
-    }
-  });
 }
