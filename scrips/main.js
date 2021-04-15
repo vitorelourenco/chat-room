@@ -90,8 +90,8 @@ function selectUnique(domElem){
 }
 
 function setTarget(domElem){
-  const isMe = domElem.querySelector('.username') && domElem.querySelector('.username').textContent;
-  if (isMe === username) return;
+  const whoThis = domElem.querySelector('.username').textContent;
+  if (whoThis === username) return;
   selectUnique(domElem);
   target = domElem.querySelector('.username').textContent;
   updateSummary();
