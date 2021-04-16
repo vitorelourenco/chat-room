@@ -49,7 +49,7 @@ function pokeServer(){
 
 //sendMessage() will cause a page reload if the request fails, as required
 function sendMessage(){
-  currentMessage = messageInput.value;
+  let currentMessage = messageInput.value;
   if (currentMessage === '') return;
   messageInput.value = '';
   axios
